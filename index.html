@@ -24,14 +24,22 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const base =
-        "https://script.google.com/macros/s/AKfycbxFvf2AgiQBUMrKjPh8bmbRd5modkqSQMvpMzRFWatbDTJxZaamdXaa2zRqcVvK6Pc/exec";
+      const base = "https://script.google.com/macros/s/AKfycbzqsQESDCPI5_6aXtKd3W2-SmN611IwayfQOE7JJ6gDrLdwMBArGmIHpUEdiyI1YXBM/exec";
 
-      const isAdmin =
-        location.search.includes("admin");
+      const isAdmin = location.search.includes("admin");
 
-      document.getElementById("app").src =
-        isAdmin ? base + "?page=admin" : base;
+      document.getElementById("app").src = isAdmin ? base + "?page=admin" : base;
+    });
+
+    // Menangkap sinyal "postMessage" dari dalam Google Apps Script (iframe)
+    window.addEventListener("message", function(event) {
+      if (event.data === 'go_admin') {
+        // Jika menekan Login Admin, redirect URL Github ke ?admin
+        window.location.href = "?admin";
+      } else if (event.data === 'go_siswa') {
+        // Jika menekan Kembali ke Siswa, redirect URL Github ke tanpa parameter / ?siswa
+        window.location.href = "?siswa";
+      }
     });
   </script>
 </head>
