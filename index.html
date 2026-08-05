@@ -1,37 +1,46 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CBT APLIKATION</title>
-	<link rel="icon" href="https://lh3.googleusercontent.com/d/1KXfiZH8rPTGXUO9WWGEib8WmgQsAZS6-" />
-    <style>
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CBT APLIKATION</title>
+
+  <!-- Favicon PNG -->
+  <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1KXfiZH8rPTGXUO9WWGEib8WmgQsAZS6-">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    iframe {
+      width: 100%;
+      height: 100dvh;
+      border: none;
+    }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const base =
+        "https://script.google.com/macros/s/AKfycbxFvf2AgiQBUMrKjPh8bmbRd5modkqSQMvpMzRFWatbDTJxZaamdXaa2zRqcVvK6Pc/exec";
+
+      const isAdmin =
+        location.search.includes("admin");
+
+      document.getElementById("app").src =
+        isAdmin ? base + "?page=admin" : base;
+    });
+  </script>
 </head>
 <body>
 
-    <iframe 
-        id="appFrame"
-        src="" 
-        width="100%" 
-        height="100%" 
-        style="border: none;" 
-        allow="geolocation; camera" 
-        allowfullscreen>
-    </iframe>
-
-    <script>
-        // Membaca halaman apa yang sedang ingin dibuka (login, absen, dsb)
-        const urlParams = new URLSearchParams(window.location.search);
-        const page = urlParams.get('page') || 'index';
-        
-        // Ganti dengan link Web App /exec Apps Script asli Anda
-        const webAppUrl = "https://script.google.com/macros/s/AKfycbxFvf2AgiQBUMrKjPh8bmbRd5modkqSQMvpMzRFWatbDTJxZaamdXaa2zRqcVvK6Pc/exec";
-        
-        // Memuat iframe sesuai halaman
-        document.getElementById('appFrame').src = webAppUrl + "?page=" + page;
-    </script>
+<iframe
+  id="app"
+  allow="camera; microphone; geolocation; fullscreen">
+</iframe>
 
 </body>
 </html>
